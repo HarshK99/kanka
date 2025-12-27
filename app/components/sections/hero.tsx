@@ -17,7 +17,7 @@ export const Hero = () => {
           to create scalable solutions that make a meaningful impact.
         </Lead>
         <div className="flex items-center justify-center gap-x-6">
-          <Button href="#projects" size="lg">
+          <Button href="#projects" size="md">
             View My Work
           </Button>
           <Button href="#contact" variant="ghost" size="lg">
