@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Container } from '@/components/ui/container';
@@ -62,25 +61,26 @@ export const ClientProjects = () => {
         {clientProjects.length <= 3 ? (
           <div className="flex justify-around gap-4">
             {clientProjects.map((project, index) => (
-              <div key={project.title} className="group flex-shrink-0 w-80">
-                <div className="aspect-video overflow-hidden rounded-lg bg-zinc-800 mb-3">
-                  <Image
+              <Link
+                key={project.title}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex-shrink-0 w-80 block"
+              >
+                <div className="aspect-video overflow-hidden rounded-lg bg-zinc-800 mb-3 hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+                  <img
                     src={project.image}
                     alt={project.title}
-                    width={320}
-                    height={180}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <h3 className="text-base font-semibold mb-2">{project.title}</h3>
+                <h3 className="text-base font-semibold mb-2 group-hover:text-zinc-300 transition-colors">{project.title}</h3>
                 <Muted className="mb-3 text-sm">{project.description}</Muted>
-                <Link
-                  href={project.link}
-                  className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
-                >
+                <span className="text-sm font-medium text-zinc-400 group-hover:text-white transition-colors">
                   View Site →
-                </Link>
-              </div>
+                </span>
+              </Link>
             ))}
           </div>
         ) : (
@@ -92,25 +92,26 @@ export const ClientProjects = () => {
             >
               <div className="flex gap-4 pb-4" style={{ width: 'max-content' }}>
                 {clientProjects.map((project, index) => (
-                  <div key={project.title} className="group flex-shrink-0 w-80 scroll-snap-align-start">
-                    <div className="aspect-video overflow-hidden rounded-lg bg-zinc-800 mb-3">
-                      <Image
+                  <Link
+                    key={project.title}
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex-shrink-0 w-80 scroll-snap-align-start block"
+                  >
+                    <div className="aspect-video overflow-hidden rounded-lg bg-zinc-800 mb-3 hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+                      <img
                         src={project.image}
                         alt={project.title}
-                        width={320}
-                        height={180}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
-                    <h3 className="text-base font-semibold mb-2">{project.title}</h3>
+                    <h3 className="text-base font-semibold mb-2 group-hover:text-zinc-300 transition-colors">{project.title}</h3>
                     <Muted className="mb-3 text-sm">{project.description}</Muted>
-                    <Link
-                      href={project.link}
-                      className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
-                    >
+                    <span className="text-sm font-medium text-zinc-400 group-hover:text-white transition-colors">
                       View Site →
-                    </Link>
-                  </div>
+                    </span>
+                  </Link>
                 ))}
               </div>
             </div>

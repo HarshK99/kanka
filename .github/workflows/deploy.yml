@@ -27,6 +27,7 @@ jobs:
       run: npm run build
 
     - name: Deploy to Hostinger via FTP
+      if: github.event_name == 'push'
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}

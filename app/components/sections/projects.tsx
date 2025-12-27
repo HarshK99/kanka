@@ -11,26 +11,27 @@ const projects = [
     image: '/images/accountx.jpg',
     link: '#',
   },
-  {
-    title: 'Toastmasters Voting Platform',
-    problem: 'Manual voting and evaluation processes in Toastmasters meetings are time-consuming and error-prone.',
-    description: 'Digital voting platform for Toastmasters clubs to conduct evaluations and voting seamlessly during meetings.',
-    image: '/images/toastmasters.jpg',
-    link: '#',
-  },
+  
   {
     title: 'Wave Link',
     problem: 'Small and medium enterprises lack professional online presence and struggle with digital marketing.',
     description: 'Comprehensive digital presence solution for SMEs including websites, social media management, and marketing tools.',
-    image: '/images/wave-link.jpg',
-    link: '#',
+    image: '/images/wavelink.png',
+    link: 'https://wavelink.co.in/',
+  },
+  {
+    title: 'Toastmasters Voting Platform',
+    problem: 'Manual voting and evaluation processes in Toastmasters meetings are time-consuming and error-prone.',
+    description: 'Digital voting platform for Toastmasters clubs to conduct evaluations and voting seamlessly during meetings.',
+    image: '/images/toastmasters.png',
+    link: 'https://toastmasters-poster.vercel.app/voting/admin/dashboard',
   },
   {
     title: 'Whisp',
     problem: 'Book lovers struggle to organize and retain key insights from their reading.',
     description: 'AI-powered note-taking app for books that helps users capture, organize, and retrieve key insights from their reading.',
-    image: '/images/whisp.jpg',
-    link: '#',
+    image: '/images/whisp.png',
+    link: 'https://whisp-sand.vercel.app/',
   },
   {
     title: 'Mannat',
