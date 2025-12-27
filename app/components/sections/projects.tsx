@@ -5,24 +5,38 @@ import { ProjectCard } from './project-card';
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    description: 'A full-stack e-commerce solution built with Next.js, Stripe, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.',
-    image: 'https://via.placeholder.com/600x400/333/fff?text=Project+1',
-    technologies: ['Next.js', 'TypeScript', 'Stripe'],
+    title: 'AccountX',
+    problem: 'Digital marketing firms struggle with complex accounting workflows and client billing.',
+    description: 'Accounting web app designed specifically for digital marketing firms to streamline financial operations and client management.',
+    image: '/images/accountx.jpg',
     link: '#',
   },
   {
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-    image: 'https://via.placeholder.com/600x400/333/fff?text=Project+2',
-    technologies: ['React', 'Node.js', 'Socket.io'],
+    title: 'Toastmasters Voting Platform',
+    problem: 'Manual voting and evaluation processes in Toastmasters meetings are time-consuming and error-prone.',
+    description: 'Digital voting platform for Toastmasters clubs to conduct evaluations and voting seamlessly during meetings.',
+    image: '/images/toastmasters.jpg',
     link: '#',
   },
   {
-    title: 'AI-Powered Chatbot',
-    description: 'An intelligent chatbot built with OpenAI\'s API, featuring natural language processing and integration with various platforms.',
-    image: 'https://via.placeholder.com/600x400/333/fff?text=Project+3',
-    technologies: ['Python', 'FastAPI', 'OpenAI'],
+    title: 'Wave Link',
+    problem: 'Small and medium enterprises lack professional online presence and struggle with digital marketing.',
+    description: 'Comprehensive digital presence solution for SMEs including websites, social media management, and marketing tools.',
+    image: '/images/wave-link.jpg',
+    link: '#',
+  },
+  {
+    title: 'Whisp',
+    problem: 'Book lovers struggle to organize and retain key insights from their reading.',
+    description: 'AI-powered note-taking app for books that helps users capture, organize, and retrieve key insights from their reading.',
+    image: '/images/whisp.jpg',
+    link: '#',
+  },
+  {
+    title: 'Mannat',
+    problem: 'People want a meaningful way to express wishes and connect with positive intentions.',
+    description: 'A platform where users can throw their wishes to the universe and receive blessings from the community.',
+    image: '/images/mannat.jpg',
     link: '#',
   },
 ];
@@ -32,7 +46,7 @@ export const Projects = () => {
     <Section id="projects" background="muted">
       <Container size="lg">
         <Heading2 className="mb-16 text-center">
-          Featured Projects
+          Personal Projects
         </Heading2>
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (

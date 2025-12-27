@@ -1,22 +1,21 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Heading3, Muted } from '@/components/ui/typography';
 
 interface ProjectCardProps {
   title: string;
+  problem: string;
   description: string;
   image: string;
-  technologies: string[];
   link?: string;
 }
 
 export const ProjectCard = ({
   title,
+  problem,
   description,
   image,
-  technologies,
   link = '#',
 }: ProjectCardProps) => {
   return (
@@ -33,13 +32,9 @@ export const ProjectCard = ({
         </div>
       </CardHeader>
       <CardContent className="p-6">
-        <Heading3 className="mb-3">{title}</Heading3>
+        <Heading3 className="mb-2">{title}</Heading3>
+        <Muted className="mb-3 text-sm italic">{problem}</Muted>
         <Muted className="mb-4">{description}</Muted>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {technologies.map((tech) => (
-            <Badge key={tech}>{tech}</Badge>
-          ))}
-        </div>
         <Link
           href={link}
           className="text-sm font-medium text-white hover:text-zinc-300 transition-colors"

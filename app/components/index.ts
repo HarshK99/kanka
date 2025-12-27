@@ -11,6 +11,7 @@ export { Hero } from './sections/hero';
 export { About } from './sections/about';
 export { Projects } from './sections/projects';
 export { Writing } from './sections/writing';
+export { ClientProjects } from './sections/client-projects';
 export { Contact } from './sections/contact';
 export { Header } from './sections/header';
 export { ProjectCard } from './sections/project-card';
