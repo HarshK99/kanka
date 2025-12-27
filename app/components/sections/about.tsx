@@ -11,20 +11,19 @@ export const About = () => {
         </Heading2>
         <div className="prose prose-lg prose-invert max-w-none">
           <Paragraph>
-            I&apos;m a full stack developer with a passion for creating meaningful digital experiences.
-            My journey started with a curiosity about how things work under the hood, leading me
-            to dive deep into web technologies, from frontend frameworks to backend architectures.
+            I&apos;m a product and data guy who loves building and shipping products that solve real problems using AI.
+            My journey spans from engineering at Zomato to co-founding ventures, always focusing on the intersection
+            of technology, data, and user experience.
           </Paragraph>
           <Paragraph className="mt-6">
-            What drives me is the challenge of solving complex problems with elegant solutions.
-            I believe in writing clean, maintainable code and staying up-to-date with the latest
-            technologies while understanding their fundamentals. Beyond coding, I&apos;m fascinated by
-            the philosophy of software design and how it impacts user experience.
+            What drives me is creating solutions that make a tangible impact. I believe in leveraging data-driven insights
+            and AI capabilities to build products that not only work well but solve meaningful problems for users.
+            My approach combines technical expertise with product thinking to deliver scalable, user-centric solutions.
           </Paragraph>
           <Paragraph className="mt-6">
-            When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to open
-            source projects, or sharing knowledge with the developer community. I value collaboration,
-            continuous learning, and the impact that well-crafted software can have on people&apos;s lives.
+            Beyond building products, I&apos;m passionate about sharing knowledge and contributing to the tech community.
+            Whether it&apos;s mentoring startups, speaking at events, or exploring emerging AI technologies,
+            I&apos;m always excited about the next challenge and the potential to create something transformative.
           </Paragraph>
         </div>
       </Container>

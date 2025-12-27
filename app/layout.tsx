@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Harsh Kankaria - Full Stack Developer",
-  description: "Personal website showcasing development projects and expertise in modern web technologies.",
+  title: "Harsh Kankaria - Co-founder & Product Leader",
+  description: "Co-founder and product leader passionate about building AI-powered solutions. Ex-Zomato, IIT Delhi alumnus.",
 };
 
 export default function RootLayout({

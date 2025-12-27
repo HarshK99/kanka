@@ -2,10 +2,11 @@ import { cn } from '@/lib/utils';
 
 interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
 }
 
-export const Heading1 = ({ className, children, as: Component = 'h1', ...props }: TypographyProps) => {
+export const Heading1 = ({ className, children, as, ...props }: TypographyProps) => {
+  const Component = (as || 'h1') as React.ElementType;
   return (
     <Component
       className={cn(
@@ -19,7 +20,8 @@ export const Heading1 = ({ className, children, as: Component = 'h1', ...props }
   );
 };
 
-export const Heading2 = ({ className, children, as: Component = 'h2', ...props }: TypographyProps) => {
+export const Heading2 = ({ className, children, as, ...props }: TypographyProps) => {
+  const Component = (as || 'h2') as React.ElementType;
   return (
     <Component
       className={cn(
@@ -33,7 +35,8 @@ export const Heading2 = ({ className, children, as: Component = 'h2', ...props }
   );
 };
 
-export const Heading3 = ({ className, children, as: Component = 'h3', ...props }: TypographyProps) => {
+export const Heading3 = ({ className, children, as, ...props }: TypographyProps) => {
+  const Component = (as || 'h3') as React.ElementType;
   return (
     <Component
       className={cn(
@@ -47,7 +50,8 @@ export const Heading3 = ({ className, children, as: Component = 'h3', ...props }
   );
 };
 
-export const Paragraph = ({ className, children, as: Component = 'p', ...props }: TypographyProps) => {
+export const Paragraph = ({ className, children, as, ...props }: TypographyProps) => {
+  const Component = (as || 'p') as React.ElementType;
   return (
     <Component
       className={cn(
@@ -61,7 +65,8 @@ export const Paragraph = ({ className, children, as: Component = 'p', ...props }
   );
 };
 
-export const Lead = ({ className, children, as: Component = 'p', ...props }: TypographyProps) => {
+export const Lead = ({ className, children, as, ...props }: TypographyProps) => {
+  const Component = (as || 'p') as React.ElementType;
   return (
     <Component
       className={cn(
@@ -75,7 +80,8 @@ export const Lead = ({ className, children, as: Component = 'p', ...props }: Typ
   );
 };
 
-export const Muted = ({ className, children, as: Component = 'p', ...props }: TypographyProps) => {
+export const Muted = ({ className, children, as, ...props }: TypographyProps) => {
+  const Component = (as || 'p') as React.ElementType;
   return (
     <Component
       className={cn(
@@ -87,4 +93,4 @@ export const Muted = ({ className, children, as: Component = 'p', ...props }: Ty
       {children}
     </Component>
   );
-};
+};;

@@ -10,11 +10,11 @@ export const Hero = () => {
           Harsh Kankaria
         </Heading1>
         <p className="mb-6 text-xl text-zinc-400 sm:text-2xl">
-          Full Stack Developer
+          Co-founder | Ex-Zomato | IIT Delhi
         </p>
         <Lead className="mb-10">
-          Crafting digital experiences that blend technical excellence with thoughtful design.
-          Passionate about building scalable solutions and exploring the intersection of code and creativity.
+          Building AI-powered products that solve real problems. Passionate about leveraging data-driven insights
+          to create scalable solutions that make a meaningful impact.
         </Lead>
         <div className="flex items-center justify-center gap-x-6">
           <Button href="#projects" size="lg">
