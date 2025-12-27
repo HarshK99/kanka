@@ -16,13 +16,13 @@ export const Contact = () => {
           feel free to reach out.
         </Muted>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button href="mailto:alex@example.com" size="lg">
+          <Button href="mailto:harshkankaria9@gmail.com" size="lg">
             Send Email
           </Button>
-          <Button href="https://linkedin.com/in/alexjohnson" variant="secondary" size="lg">
+          <Button href="https://linkedin.com/in/harshkankaria9" variant="secondary" size="lg">
             LinkedIn
           </Button>
-          <Button href="https://github.com/alexjohnson" variant="secondary" size="lg">
+          <Button href="https://github.com/HarshK99" variant="secondary" size="lg">
             GitHub
           </Button>
         </div>
