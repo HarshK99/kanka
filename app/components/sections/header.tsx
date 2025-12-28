@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 const navItems = [
   { name: 'About', href: '#about' },
   { name: 'Work', href: '#projects' },
-  { name: 'Writing', href: '#writing' },
+  // { name: 'Writing', href: '#writing' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -18,15 +18,22 @@ export const Header = () => {
       const sections = navItems.map(item => item.href.substring(1));
       const scrollPosition = window.scrollY + 100; // Offset for header
 
+      let foundActive = false;
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
+            foundActive = true;
             break;
           }
         }
+      }
+      
+      // If no section is active (e.g., at the top before About), default to About
+      if (!foundActive) {
+        setActiveSection('about');
       }
     };
 

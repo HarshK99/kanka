@@ -8,8 +8,8 @@ const projects = [
     title: 'AccountX',
     problem: 'Digital marketing firms struggle with complex accounting workflows and client billing.',
     description: 'Accounting web app designed specifically for digital marketing firms to streamline financial operations and client management.',
-    image: '/images/accountx.jpg',
-    link: '#',
+    image: '/images/accountx.png',
+    link: 'https://accountx.paperthoughts.in/',
   },
   
   {
@@ -34,10 +34,10 @@ const projects = [
     link: 'https://whisp-sand.vercel.app/',
   },
   {
-    title: 'Mannat',
+    title: 'Mannat - Coming Soon',
     problem: 'People want a meaningful way to express wishes and connect with positive intentions.',
     description: 'A platform where users can throw their wishes to the universe and receive blessings from the community.',
-    image: '/images/mannat.jpg',
+    image: '/images/mannat.png',
     link: '#',
   },
 ];
