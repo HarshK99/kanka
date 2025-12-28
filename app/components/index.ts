@@ -15,3 +15,4 @@ export { ClientProjects } from './sections/client-projects';
 export { Contact } from './sections/contact';
 export { Header } from './sections/header';
 export { ProjectCard } from './sections/project-card';
+export { Footer } from './sections/footer';

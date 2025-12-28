@@ -4,7 +4,7 @@ import { Heading1, Lead } from '@/components/ui/typography';
 
 export const Hero = () => {
   return (
-    <section id="hero" className="flex min-h-screen items-center justify-center px-6 py-20">
+    <section id="about" className="flex min-h-screen items-center justify-center px-6 py-20">
       <Container size="lg" className="text-center">
         <Heading1 className="mb-6">
           Harsh Kankaria
