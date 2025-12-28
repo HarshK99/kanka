@@ -15,26 +15,33 @@ export const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navItems.map(item => item.href.substring(1));
       const scrollPosition = window.scrollY + 100; // Offset for header
 
-      let foundActive = false;
+      // Check client-projects first (map to projects nav item)
+      const clientProjectsElement = document.getElementById('client-projects');
+      if (clientProjectsElement) {
+        const { offsetTop, offsetHeight } = clientProjectsElement;
+        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          setActiveSection('projects');
+          return;
+        }
+      }
+
+      // Check main nav sections
+      const sections = navItems.map(item => item.href.substring(1));
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
-            foundActive = true;
-            break;
+            return;
           }
         }
       }
       
       // If no section is active (e.g., at the top before About), default to About
-      if (!foundActive) {
-        setActiveSection('about');
-      }
+      setActiveSection('about');
     };
 
     handleScroll();
