@@ -16,7 +16,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     return (
         <div className="max-w-4xl mx-auto px-5 py-8 pt-30">
             <article>
-                <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-center">{post.title}</h1>
+                <h1 className="text-3xl lg:text-5xl font-bold mb-4 text-center">{post.title}</h1>
                 <p className="text-gray-500 mb-8 text-center">{post.date}</p>
                 <div
                     className="prose prose-lg max-w-none px-5 lg:px-10 text-justify
