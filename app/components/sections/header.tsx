@@ -1,84 +1,98 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
-const navItems = [
-  { name: 'About', href: '#about' },
-  { name: 'Work', href: '#projects' },
-  // { name: 'Writing', href: '#writing' },
-  { name: 'Contact', href: '#contact' },
+const NAV_ITEMS = [
+  { name: 'About', href: '/#about' },
+  { name: 'Work', href: '/#projects' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Contact', href: '/#contact' },
 ];
 
+const SCROLL_OFFSET = 80;
+
 export const Header = () => {
-  const [activeSection, setActiveSection] = useState('');
+  const pathname = usePathname();
+  const [activeHash, setActiveHash] = useState<string | null>(null);
 
+  // Smooth scroll on home page when hash changes
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100; // Offset for header
+    if (pathname !== '/') return;
+    if (!window.location.hash) return;
 
-      // Check client-projects first (map to projects nav item)
-      const clientProjectsElement = document.getElementById('client-projects');
-      if (clientProjectsElement) {
-        const { offsetTop, offsetHeight } = clientProjectsElement;
-        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-          setActiveSection('projects');
+    const id = window.location.hash.slice(1);
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    window.scrollTo({
+      top: el.offsetTop - SCROLL_OFFSET,
+      behavior: 'smooth',
+    });
+  }, [pathname]);
+
+  // Track active section on scroll (home page only)
+  useEffect(() => {
+    if (pathname !== '/') return;
+
+    const sections = NAV_ITEMS
+      .filter(item => item.href.startsWith('/#'))
+      .map(item => {
+        const id = item.href.replace('/#', '');
+        return { id, el: document.getElementById(id) };
+      })
+      .filter(s => s.el);
+
+    const onScroll = () => {
+      const scrollY = window.scrollY + SCROLL_OFFSET;
+
+      for (const { id, el } of sections) {
+        if (!el) continue;
+        const { offsetTop, offsetHeight } = el;
+        if (scrollY >= offsetTop && scrollY < offsetTop + offsetHeight) {
+          setActiveHash(id);
           return;
         }
       }
 
-      // Check main nav sections
-      const sections = navItems.map(item => item.href.substring(1));
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            return;
-          }
-        }
-      }
-      
-      // If no section is active (e.g., at the top before About), default to About
-      setActiveSection('about');
+      setActiveHash(null);
     };
 
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80; // Account for header height
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth',
-      });
-    }
-  };
+    onScroll();
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [pathname]);
 
   return (
-    <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
-      <nav className="backdrop-blur-md bg-white/20 border border-white/10 rounded-full px-4 py-3 shadow-lg shadow-black/10">
+    <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+      <nav className="backdrop-blur-md bg-white/80 border border-gray-200 rounded-full px-4 py-3 shadow-lg shadow-black/10">
         <ul className="flex items-center gap-3">
-          {navItems.map((item) => (
-            <li key={item.name}>
-              <button
-                onClick={() => scrollToSection(item.href)}
-                className={cn(
-                  'relative px-3 py-2 text-sm font-medium transition-all duration-200 rounded-full',
-                  activeSection === item.href.substring(1)
-                    ? 'text-white bg-white/10 font-semibold'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
-                )}
-              >
-                {item.name}
-              </button>
-            </li>
-          ))}
+          {NAV_ITEMS.map(item => {
+            const isSection = item.href.startsWith('/#');
+            const sectionId = isSection ? item.href.replace('/#', '') : null;
+
+            const isActive = isSection
+              ? pathname === '/' && activeHash === sectionId
+              : pathname === item.href;
+
+            return (
+              <li key={item.name}>
+                <Link
+                  href={item.href}
+                  className={cn(
+                    'px-3 py-2 text-sm font-medium rounded-full transition-all duration-200',
+                    isActive
+                      ? 'bg-gray-200 text-black font-semibold'
+                      : 'text-gray-700 hover:bg-gray-100 hover:text-black'
+                  )}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </header>

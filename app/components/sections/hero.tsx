@@ -10,7 +10,7 @@ export const Hero = () => {
           Harsh Kankaria
         </Heading1>
         <p className="mb-6 text-xl text-zinc-400 sm:text-2xl">
-          Co-founder | Ex-Zomato | IIT Delhi
+          Co-founder @ Wave Link | Ex-Zomato | IIT Delhi
         </p>
         <Lead className="mb-10">
           Building AI-powered products that solve real problems. Passionate about leveraging data-driven insights
