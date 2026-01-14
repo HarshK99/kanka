@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { name: 'Contact', href: '/#contact' },
 ];
 
-const SCROLL_OFFSET = 80;
+const SCROLL_OFFSET = 10;
 
 export const Header = () => {
   const pathname = usePathname();

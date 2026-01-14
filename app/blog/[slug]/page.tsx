@@ -19,7 +19,13 @@ export default async function BlogPostPage({ params }: PageProps) {
         <h1 className="text-3xl lg:text-4xl font-bold mb-4">{post.title}</h1>
         <p className="text-gray-500 mb-8">{post.date}</p>
         <div
-          className="max-w-none leading-relaxed px-5 lg:px-50 text-justify"
+          className="prose prose-lg max-w-none px-5 lg:px-50 text-justify
+            prose-h1:mb-4
+    prose-h2:mb-3
+    prose-h3:mb-2
+    prose-h1:mt-8
+    prose-h2:mt-6
+    prose-h3:mt-4"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </article>

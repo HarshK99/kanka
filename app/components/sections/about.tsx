@@ -11,7 +11,7 @@ export const About = () => {
         </Heading2>
         <div className="prose prose-lg prose-invert max-w-none">
           <Paragraph className="text-justify">
-            I’m a product and data-focused founder who enjoys building and shipping AI-powered products that solve real problems. My journey spans engineering at Zomato to co-founding ventures, with a consistent focus on the intersection of technology, data, and user experience.
+            I’m a product and data-focused founder who enjoys building and shipping AI-powered products that solve real problems. My journey spans product analytics at Zomato to co-founding ventures, with a consistent focus on the intersection of technology, data, and user experience.
 
           </Paragraph>
           <Paragraph className="mt-6 text-justify">
