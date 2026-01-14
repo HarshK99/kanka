@@ -11,9 +11,7 @@ export const Contact = () => {
           Let&apos;s Connect
         </Heading2>
         <Muted className="mb-12">
-          I&apos;m always interested in new opportunities and collaborations.
-          Whether you have a project in mind or just want to chat about technology,
-          feel free to reach out.
+         I enjoy connecting with founders, operators, and technologists to explore ideas, partnerships, and shared learning. If you’re building, thinking, or experimenting in tech and want to exchange perspectives, I’d love to connect.
         </Muted>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button href="mailto:harshkankaria9@gmail.com" size="lg">
