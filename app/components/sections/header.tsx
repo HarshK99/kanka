@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { name: 'Contact', href: '/#contact' },
 ];
 
-const SCROLL_OFFSET = 80;
+const SCROLL_OFFSET = 10;
 
 export const Header = () => {
   const pathname = usePathname();
@@ -81,6 +81,7 @@ export const Header = () => {
               <li key={item.name}>
                 <Link
                   href={item.href}
+                  prefetch={false}
                   className={cn(
                     'px-3 py-2 text-sm font-medium rounded-full transition-all duration-200',
                     isActive
