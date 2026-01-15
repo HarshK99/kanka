@@ -13,8 +13,8 @@ export default function BlogPage() {
             <Link href={`/blog/${post.slug}`} className="text-xl font-semibold hover:underline text-justify">
               {post.title}
             </Link>
-            <p className="text-gray-600 text-justify pt-5">{post.excerpt}</p>
-            <p className="text-sm text-gray-500">{post.date}</p>
+            <p className="text-gray-600 dark:text-gray-300 text-justify pt-5">{post.excerpt}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">{post.date}</p>
           </div>
         ))}
       </div>
