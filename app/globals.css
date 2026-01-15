@@ -18,6 +18,37 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+
+  .prose {
+    color: #ededed;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    color: #ededed;
+  }
+
+  .prose strong {
+    color: #ededed;
+  }
+
+  .prose code {
+    color: #ededed;
+    background-color: #1a1a1a;
+  }
+
+  .prose pre {
+    background-color: #1a1a1a;
+  }
+
+  .prose blockquote {
+    color: #cccccc;
+    border-left-color: #555555;
+  }
 }
 
 body {
