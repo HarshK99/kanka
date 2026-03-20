@@ -1,8 +1,15 @@
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Heading1, Heading2, Heading3, Paragraph, Lead, Muted } from '@/components/ui/typography';
+import { Heading1, Lead } from '@/components/ui/typography';
+import { SectionHeader } from './components/section-header';
+import { BulletList } from './components/bullet-list';
+import { InfoCard } from './components/info-card';
+import { TagList } from './components/tag-list';
+import { CaseStudyCard } from './components/case-study-card';
+import { ProjectCylinder } from './components/project-cylinder';
+import type { CaseStudyData } from './components/case-study-card';
+import type { CylinderProject } from './components/project-cylinder';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -13,7 +20,7 @@ export const metadata: Metadata = {
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
-const skills = [
+const skills: { category: string; items: string[] }[] = [
   { category: 'Product Strategy', items: ['Roadmap Planning', 'OKR Setting', 'GTM Strategy', 'Competitive Analysis', 'Product Vision'] },
   { category: 'Execution', items: ['Agile / Scrum', 'Sprint Planning', 'PRD Writing', 'Feature Prioritisation', 'Cross-functional Alignment'] },
   { category: 'Analytics & Data', items: ['SQL', 'Funnel Analysis', 'A/B Testing', 'Retention Modelling', 'Mixpanel / Amplitude'] },
@@ -22,7 +29,14 @@ const skills = [
   { category: 'Soft Skills', items: ['Stakeholder Management', 'Storytelling', 'Written Communication', 'Leadership', 'Mentoring'] },
 ];
 
-const experience = [
+const experience: {
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+  highlights: string[];
+  tags: string[];
+}[] = [
   {
     role: 'Co-founder & Product Lead',
     company: 'Wave Link',
@@ -53,7 +67,7 @@ const experience = [
   },
 ];
 
-const caseStudies = [
+const caseStudies: CaseStudyData[] = [
   {
     tag: 'Case Study · SaaS',
     title: 'Reducing Billing Friction for Digital Agencies',
@@ -98,11 +112,38 @@ const caseStudies = [
   },
 ];
 
-const metrics = [
+const metrics: { value: string; label: string }[] = [
   { value: '5+', label: 'Years of product & analytics experience' },
   { value: '14', label: 'Products shipped end-to-end' },
-  { value: '10M+', label: 'Users across products I\'ve worked on' },
+  { value: '10M+', label: "Users across products I've worked on" },
   { value: '8%', label: 'Checkout conversion lift (Zomato A/B test)' },
+];
+
+const projects: CylinderProject[] = [
+  { title: 'AccountX', image: '/images/accountx.png', link: 'https://accountx.paperthoughts.in/' },
+  { title: 'Wave Link', image: '/images/wavelink.png', link: 'https://wavelink.co.in/' },
+  { title: 'Toastmasters Voting', image: '/images/toastmasters.png', link: 'https://toastmasters-poster.vercel.app/voting/admin/dashboard' },
+  { title: 'Whisp', image: '/images/whisp.png', link: 'https://whisp-sand.vercel.app/' },
+  { title: 'Mannat', image: '/images/mannat.png', link: '#' },
+];
+
+const pmPrinciples: { title: string; body: string }[] = [
+  {
+    title: 'Problem before solution',
+    body: 'I spend disproportionate time in discovery. A well-framed problem is already 40% of the solution. I use Jobs-to-be-Done, user interviews, and data triangulation before writing a single spec.',
+  },
+  {
+    title: 'Outcome > output',
+    body: "Roadmaps ship features; great PMs ship outcomes. I anchor everything to a north-star metric and tie each initiative to a measurable hypothesis before it enters the sprint.",
+  },
+  {
+    title: 'Opinionated, not precious',
+    body: "I form strong views quickly from evidence, share them clearly, and update them faster when I'm wrong. Bad ideas should die in review, not in production.",
+  },
+  {
+    title: 'Ruthless prioritisation',
+    body: 'I use RICE and impact/effort frameworks, but the real skill is saying no loudly enough that the team feels the focus, not the constraint.',
+  },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -117,9 +158,7 @@ export default function PortfolioPage() {
           <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-700 px-4 py-1.5 text-sm text-zinc-400">
             Open to PM roles · March 2026
           </span>
-          <Heading1 className="mb-6">
-            Product Manager
-          </Heading1>
+          <Heading1 className="mb-6">Product Manager</Heading1>
           <p className="mb-6 text-xl text-zinc-400 sm:text-2xl">
             Harsh Kankaria · Ex-Zomato · Co-founder · IIT Delhi
           </p>
@@ -128,12 +167,8 @@ export default function PortfolioPage() {
             and engineering trade-offs — and I thrive when zero becomes one.
           </Lead>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Button href="#case-studies" size="lg" className="py-5">
-              View Case Studies
-            </Button>
-            <Button href="#experience" variant="secondary" size="lg">
-              My Experience
-            </Button>
+            <Button href="#case-studies" size="lg" className="py-5">View Case Studies</Button>
+            <Button href="#experience" variant="secondary" size="lg">My Experience</Button>
             <Button href="mailto:harshkankaria9@gmail.com" variant="ghost" size="lg">
               Let&apos;s Talk →
             </Button>
@@ -158,33 +193,14 @@ export default function PortfolioPage() {
       {/* ── PM Approach ──────────────────────────────────────────────── */}
       <Section id="approach">
         <Container size="md">
-          <Heading2 className="mb-4">How I think about product</Heading2>
-          <Muted className="mb-12 text-base">
-            My mental models, distilled from building products across B2B SaaS, consumer apps, and high-traffic platforms.
-          </Muted>
+          <SectionHeader
+            title="How I think about product"
+            subtitle="My mental models, distilled from building products across B2B SaaS, consumer apps, and high-traffic platforms."
+            className="mb-12"
+          />
           <div className="grid gap-6 sm:grid-cols-2">
-            {[
-              {
-                title: 'Problem before solution',
-                body: 'I spend disproportionate time in discovery. A well-framed problem is already 40% of the solution. I use Jobs-to-be-Done, user interviews, and data triangulation before writing a single spec.',
-              },
-              {
-                title: 'Outcome > output',
-                body: 'Roadmaps ship features; great PMs ship outcomes. I anchor everything to a north-star metric and tie each initiative to a measurable hypothesis before it enters the sprint.',
-              },
-              {
-                title: 'Opinionated, not precious',
-                body: 'I form strong views quickly from evidence, share them clearly, and update them faster when I\'m wrong. Bad ideas should die in review, not in production.',
-              },
-              {
-                title: 'Ruthless prioritisation',
-                body: 'I use RICE and impact/effort frameworks, but the real skill is saying no loudly enough that the team feels the focus, not the constraint.',
-              },
-            ].map((item) => (
-              <div key={item.title} className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
-                <Heading3 className="mb-3 text-white">{item.title}</Heading3>
-                <Paragraph className="text-sm leading-7 text-zinc-400">{item.body}</Paragraph>
-              </div>
+            {pmPrinciples.map((p) => (
+              <InfoCard key={p.title} title={p.title} body={p.body} />
             ))}
           </div>
         </Container>
@@ -193,47 +209,15 @@ export default function PortfolioPage() {
       {/* ── Case Studies ─────────────────────────────────────────────── */}
       <Section id="case-studies" background="muted">
         <Container size="lg">
-          <Heading2 className="mb-4 text-center">Case Studies</Heading2>
-          <Muted className="mb-16 text-center text-base">
-            Three product problems I've owned — from discovery to impact.
-          </Muted>
+          <SectionHeader
+            title="Case Studies"
+            subtitle="Three product problems I've owned — from discovery to impact."
+            centered
+            className="mb-16"
+          />
           <div className="flex flex-col gap-12">
-            {caseStudies.map((cs, i) => (
-              <div
-                key={cs.title}
-                className="rounded-2xl border border-zinc-800 bg-black/60 p-8 md:p-10"
-              >
-                <span className="mb-4 inline-block text-xs uppercase tracking-widest text-zinc-500">
-                  {cs.tag}
-                </span>
-                <Heading3 className="mb-6 text-2xl font-bold text-white">{cs.title}</Heading3>
-                <div className="grid gap-8 md:grid-cols-3">
-                  <div>
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-zinc-500">Problem</p>
-                    <Paragraph className="text-sm leading-7 text-zinc-300">{cs.problem}</Paragraph>
-                  </div>
-                  <div>
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-zinc-500">Approach</p>
-                    <Paragraph className="text-sm leading-7 text-zinc-300">{cs.approach}</Paragraph>
-                  </div>
-                  <div>
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-zinc-500">Impact</p>
-                    <ul className="mt-1 space-y-2">
-                      {cs.impact.map((line) => (
-                        <li key={line} className="flex items-start gap-2 text-sm text-zinc-300">
-                          <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-white" />
-                          {line}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {cs.tags.map((t) => (
-                    <Badge key={t} variant="secondary">{t}</Badge>
-                  ))}
-                </div>
-              </div>
+            {caseStudies.map((cs) => (
+              <CaseStudyCard key={cs.title} {...cs} />
             ))}
           </div>
         </Container>
@@ -242,51 +226,49 @@ export default function PortfolioPage() {
       {/* ── Experience ───────────────────────────────────────────────── */}
       <Section id="experience">
         <Container size="md">
-          <Heading2 className="mb-12">Experience</Heading2>
+          <SectionHeader title="Experience" className="mb-12" />
           <div className="flex flex-col gap-12">
             {experience.map((job) => (
               <div key={job.company} className="border-l-2 border-zinc-800 pl-8">
                 <div className="mb-1 flex flex-wrap items-center gap-3">
-                  <Heading3 className="text-white">{job.role}</Heading3>
+                  <span className="text-xl font-semibold text-white">{job.role}</span>
                   <span className="text-zinc-500">·</span>
                   <span className="text-zinc-400">{job.company}</span>
                   <span className="ml-auto text-sm text-zinc-500">{job.period}</span>
                 </div>
-                <Paragraph className="mb-5 text-sm leading-7 text-zinc-400">{job.description}</Paragraph>
-                <ul className="space-y-2">
-                  {job.highlights.map((h) => (
-                    <li key={h} className="flex items-start gap-2 text-sm text-zinc-300">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-500" />
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {job.tags.map((t) => (
-                    <Badge key={t}>{t}</Badge>
-                  ))}
-                </div>
+                <p className="mb-5 text-sm leading-7 text-zinc-400">{job.description}</p>
+                <BulletList items={job.highlights} />
+                <TagList tags={job.tags} className="mt-5" />
               </div>
             ))}
           </div>
         </Container>
       </Section>
 
-      {/* ── Skills ───────────────────────────────────────────────────── */}
-      <Section id="skills" background="muted">
+      {/* ── Projects Cylinder ────────────────────────────────────────── */}
+      <Section id="projects" background="muted">
         <Container size="lg">
-          <Heading2 className="mb-12 text-center">Skills &amp; Toolkit</Heading2>
+          <SectionHeader
+            title="Projects"
+            subtitle="Products I've built from zero — each one a real problem, a shipped solution."
+            centered
+            className="mb-16"
+          />
+          <ProjectCylinder projects={projects} />
+        </Container>
+      </Section>
+
+      {/* ── Skills ───────────────────────────────────────────────────── */}
+      <Section id="skills">
+        <Container size="lg">
+          <SectionHeader title="Skills &amp; Toolkit" centered className="mb-12" />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {skills.map((group) => (
-              <div key={group.category} className="rounded-2xl border border-zinc-800 bg-black/40 p-6">
-                <Heading3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-zinc-400">
+              <div key={group.category} className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
+                <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-zinc-400">
                   {group.category}
-                </Heading3>
-                <div className="flex flex-wrap gap-2">
-                  {group.items.map((skill) => (
-                    <Badge key={skill} variant="secondary">{skill}</Badge>
-                  ))}
-                </div>
+                </p>
+                <TagList tags={group.items} variant="secondary" />
               </div>
             ))}
           </div>
@@ -294,42 +276,37 @@ export default function PortfolioPage() {
       </Section>
 
       {/* ── Education ────────────────────────────────────────────────── */}
-      <Section id="education">
+      <Section id="education" background="muted">
         <Container size="md">
-          <Heading2 className="mb-10">Education</Heading2>
+          <SectionHeader title="Education" className="mb-10" />
           <div className="border-l-2 border-zinc-800 pl-8">
             <div className="flex flex-wrap items-center gap-3">
-              <Heading3 className="text-white">B.Tech, Engineering</Heading3>
+              <span className="text-xl font-semibold text-white">B.Tech, Engineering</span>
               <span className="text-zinc-500">·</span>
               <span className="text-zinc-400">IIT Delhi</span>
               <span className="ml-auto text-sm text-zinc-500">2017 – 2021</span>
             </div>
-            <Paragraph className="mt-3 text-sm leading-7 text-zinc-400">
+            <p className="mt-3 text-sm leading-7 text-zinc-400">
               Strong foundation in systems thinking, algorithms, and problem decomposition.
               Active in the entrepreneurship cell and product / design clubs.
-            </Paragraph>
+            </p>
           </div>
         </Container>
       </Section>
 
       {/* ── CTA ──────────────────────────────────────────────────────── */}
-      <Section background="muted">
+      <Section>
         <Container size="sm" className="text-center">
-          <Heading2 className="mb-6">Let&apos;s build something together</Heading2>
-          <Lead className="mb-10">
-            I&apos;m actively exploring senior PM and product leadership roles. If you&apos;re looking for someone
-            who brings founder-level ownership, data fluency, and strong execution habits — I&apos;d love to chat.
-          </Lead>
+          <SectionHeader
+            title="Let's build something together"
+            subtitle="I'm actively exploring senior PM and product leadership roles. If you're looking for someone who brings founder-level ownership, data fluency, and strong execution habits — I'd love to chat."
+            centered
+            className="mb-10"
+          />
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Button href="mailto:harshkankaria9@gmail.com" size="lg">
-              Email Me
-            </Button>
-            <Button href="https://linkedin.com/in/harshkankaria9" variant="secondary" size="lg">
-              LinkedIn
-            </Button>
-            <Button href="/" variant="ghost" size="lg">
-              ← Back to Home
-            </Button>
+            <Button href="mailto:harshkankaria9@gmail.com" size="lg">Email Me</Button>
+            <Button href="https://linkedin.com/in/harshkankaria9" variant="secondary" size="lg">LinkedIn</Button>
+            <Button href="/" variant="ghost" size="lg">← Back to Home</Button>
           </div>
         </Container>
       </Section>
