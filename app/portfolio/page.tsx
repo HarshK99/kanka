@@ -154,18 +154,29 @@ export default function PortfolioPage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white pt-24">
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="flex min-h-[80vh] items-center px-6 pb-10">
-        <Container size="lg">
-          <div className="flex flex-col md:flex-row md:items-center gap-12 md:gap-16">
+      <section className="relative flex min-h-[80vh] items-end md:items-center px-6 pb-12 md:pb-10">
 
-            {/* Text — 60% */}
+        {/* Mobile: full-bleed background image */}
+        <img
+          src="/images/hero.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-top md:hidden"
+        />
+        {/* Mobile: gradient overlay so text is readable */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent md:hidden" />
+
+        <Container size="lg" className="relative z-10 w-full">
+          <div className="flex flex-col md:flex-row md:items-center md:gap-16">
+
+            {/* Text */}
             <div className="w-full md:w-[60%] text-center md:text-left">
-              <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-700 px-4 py-1.5 text-sm text-zinc-400">
+              <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-zinc-700 px-4 py-1.5 text-sm text-zinc-400">
                 Open to PM roles · March 2026
               </span>
-              <Heading1 className="mb-6">Product Manager</Heading1>
+              <Heading1 className="mb-4 text-3xl sm:text-5xl">Product Manager</Heading1>
               <TypewriterSubtitle prefix="Harsh Kankaria" />
-              <Lead className="mb-10 md:px-0 px-2">
+              <Lead className="hidden md:block mb-10">
                 I turn ambiguous problems into shipped products. I live in the space between user empathy, data,
                 and engineering trade-offs — and I thrive when zero becomes one.
               </Lead>
@@ -179,12 +190,12 @@ export default function PortfolioPage() {
               <LogoStrip className="md:items-start" />
             </div>
 
-            {/* Image — 40% */}
-            <div className="w-full md:w-[40%] flex justify-center md:justify-end">
+            {/* Desktop-only image column */}
+            <div className="hidden md:flex w-full md:w-[40%] justify-end">
               <img
                 src="/images/hero.png"
                 alt="Harsh Kankaria"
-                className="w-full max-w-[280px] md:max-w-none md:max-h-[600px] object-cover object-top"
+                className="w-full md:max-h-[600px] object-cover object-top"
                 style={{
                   maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',

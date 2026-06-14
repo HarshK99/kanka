@@ -67,12 +67,12 @@ export const Header = () => {
   }, [pathname]);
 
   return (
-    <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+    <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-fit">
       <nav
-        className="backdrop-blur-[12px] bg-white/5 rounded-full px-4 py-3"
+        className="backdrop-blur-[12px] bg-white/5 rounded-full px-3 py-2 sm:px-4 sm:py-3"
         style={{ border: '0.5px solid rgba(255,255,255,0.1)' }}
       >
-        <ul className="flex items-center gap-3">
+        <ul className="flex items-center gap-1 sm:gap-3">
           {NAV_ITEMS.map(item => {
             const isSection = item.href.startsWith('/#');
             const sectionId = isSection ? item.href.replace('/#', '') : null;
@@ -81,13 +81,15 @@ export const Header = () => {
               ? pathname === '/' && activeHash === sectionId
               : pathname === item.href;
 
+            const isMobileHidden = item.name === 'Contact';
+
             return (
-              <li key={item.name}>
+              <li key={item.name} className={isMobileHidden ? 'hidden sm:block' : ''}>
                 <Link
                   href={item.href}
                   prefetch={false}
                   className={cn(
-                    'px-3 py-2 text-sm font-medium rounded-full transition-all duration-200',
+                    'px-2.5 py-1.5 sm:px-3 sm:py-2 text-sm font-medium rounded-full transition-all duration-200',
                     isActive
                       ? 'bg-white/15 text-white font-semibold'
                       : 'text-white/70 hover:bg-white/10 hover:text-white'
