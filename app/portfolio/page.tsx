@@ -8,6 +8,7 @@ import { InfoCard } from './components/info-card';
 import { TagList } from './components/tag-list';
 import { CaseStudyCard } from './components/case-study-card';
 import { ProjectCylinder } from './components/project-cylinder';
+import { TypewriterSubtitle, LogoStrip } from '@/components';
 import type { CaseStudyData } from './components/case-study-card';
 import type { CylinderProject } from './components/project-cylinder';
 import type { Metadata } from 'next';
@@ -153,25 +154,56 @@ export default function PortfolioPage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white pt-24">
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="flex min-h-[80vh] items-center justify-center px-6 py-24">
-        <Container size="lg" className="text-center">
-          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-700 px-4 py-1.5 text-sm text-zinc-400">
-            Open to PM roles · March 2026
-          </span>
-          <Heading1 className="mb-6">Product Manager</Heading1>
-          <p className="mb-6 text-xl text-zinc-400 sm:text-2xl">
-            Harsh Kankaria · Ex-Zomato · Co-founder · IIT Delhi
-          </p>
-          <Lead className="mb-10 px-2">
-            I turn ambiguous problems into shipped products. I live in the space between user empathy, data,
-            and engineering trade-offs — and I thrive when zero becomes one.
-          </Lead>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Button href="#case-studies" size="lg" className="py-5">View Case Studies</Button>
-            <Button href="#experience" variant="secondary" size="lg">My Experience</Button>
-            <Button href="mailto:harshkankaria9@gmail.com" variant="ghost" size="lg">
-              Let&apos;s Talk →
-            </Button>
+      <section className="relative flex min-h-[80vh] items-end md:items-center px-6 pb-12 md:pb-10">
+
+        {/* Mobile: full-bleed background image */}
+        <img
+          src="/images/hero.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-top md:hidden"
+        />
+        {/* Mobile: gradient overlay so text is readable */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent md:hidden" />
+
+        <Container size="lg" className="relative z-10 w-full">
+          <div className="flex flex-col md:flex-row md:items-center md:gap-16">
+
+            {/* Text */}
+            <div className="w-full md:w-[60%] text-center md:text-left">
+              <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-zinc-700 px-4 py-1.5 text-sm text-zinc-400">
+                Open to PM roles · March 2026
+              </span>
+              <Heading1 className="mb-4 text-3xl sm:text-5xl">Product Manager</Heading1>
+              <TypewriterSubtitle prefix="Harsh Kankaria" />
+              <Lead className="hidden md:block mb-10">
+                I turn ambiguous problems into shipped products. I live in the space between user empathy, data,
+                and engineering trade-offs — and I thrive when zero becomes one.
+              </Lead>
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
+                <Button href="#case-studies" size="lg" className="py-5">View Case Studies</Button>
+                <Button href="#experience" variant="secondary" size="lg">My Experience</Button>
+                <Button href="mailto:harshkankaria9@gmail.com" variant="ghost" size="lg">
+                  Let&apos;s Talk →
+                </Button>
+              </div>
+              <LogoStrip className="md:items-start" />
+            </div>
+
+            {/* Desktop-only image column */}
+            <div className="hidden md:flex w-full md:w-[40%] justify-end">
+              <img
+                src="/images/hero.png"
+                alt="Harsh Kankaria"
+                className="w-full md:max-h-[600px] object-cover object-top"
+                style={{
+                  maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+                  filter: 'drop-shadow(0 0 40px rgba(59, 130, 246, 0.15))',
+                }}
+              />
+            </div>
+
           </div>
         </Container>
       </section>
@@ -281,9 +313,9 @@ export default function PortfolioPage() {
           <SectionHeader title="Education" className="mb-10" />
           <div className="border-l-2 border-zinc-800 pl-8">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="text-xl font-semibold text-white">B.Tech, Engineering</span>
+              <span className="text-xl font-semibold text-white">Indian Institute of Technology (IIT), Delhi</span>
               <span className="text-zinc-500">·</span>
-              <span className="text-zinc-400">IIT Delhi</span>
+              <span className="text-zinc-400">B.Tech, Engineering</span>
               <span className="ml-auto text-sm text-zinc-500">2017 – 2021</span>
             </div>
             <p className="mt-3 text-sm leading-7 text-zinc-400">
