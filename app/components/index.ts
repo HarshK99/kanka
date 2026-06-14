@@ -5,6 +5,8 @@ export { Container } from './ui/container';
 export { Section } from './ui/section';
 export { Badge } from './ui/badge';
 export { Heading1, Heading2, Heading3, Paragraph, Lead, Muted } from './ui/typography';
+export { TypewriterSubtitle } from './ui/typewriter-subtitle';
+export { LogoStrip } from './ui/logo-strip';
 
 // Section Components
 export { Hero } from './sections/hero';
