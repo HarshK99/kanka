@@ -241,10 +241,6 @@ export function ProjectCylinder({ projects }: ProjectCylinderProps) {
         </button>
       </div>
 
-      <p className="text-xs text-zinc-500 tracking-wide">
-        Hover to pause · swipe or use arrows · click centre to visit
-      </p>
-
     </div>
   );
 }
