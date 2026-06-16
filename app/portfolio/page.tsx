@@ -41,7 +41,7 @@ const experience: {
   {
     role: 'Co-founder & Product Lead',
     company: 'Wave Link',
-    period: '2023 – Present',
+    period: '2025 – Present',
     description:
       'Built a full-stack digital presence platform for SMEs — from zero to paying customers. Owned the entire product lifecycle: discovery, design, development, launch, and iteration.',
     highlights: [
@@ -55,7 +55,7 @@ const experience: {
   {
     role: 'Product Analyst',
     company: 'Zomato',
-    period: '2021 – 2023',
+    period: '2024 – 2025',
     description:
       "Worked in Zomato's growth org, driving data-informed product decisions across the user acquisition and retention funnel.",
     highlights: [
@@ -172,7 +172,7 @@ export default function PortfolioPage() {
             {/* Text */}
             <div className="w-full md:w-[60%] text-center md:text-left">
               <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-zinc-700 px-4 py-1.5 text-sm text-zinc-400">
-                Open to PM roles · March 2026
+                Open to PM roles · June 2026
               </span>
               <Heading1 className="mb-4 text-3xl sm:text-5xl">Product Manager</Heading1>
               <TypewriterSubtitle prefix="Harsh Kankaria" />
