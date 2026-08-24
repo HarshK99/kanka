@@ -4,19 +4,17 @@ import { Button } from '@/components/ui/button';
 import { Heading1, Lead } from '@/components/ui/typography';
 import { SectionHeader } from './components/section-header';
 import { BulletList } from './components/bullet-list';
-import { InfoCard } from './components/info-card';
 import { TagList } from './components/tag-list';
-import { CaseStudyCard } from './components/case-study-card';
 import { ProjectCylinder } from './components/project-cylinder';
 import { TypewriterSubtitle, LogoStrip } from '@/components';
-import type { CaseStudyData } from './components/case-study-card';
+import { GradientWaves } from '@/components/ui/gradient-waves';
 import type { CylinderProject } from './components/project-cylinder';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'PM Portfolio – Harsh Kankaria',
   description:
-    'Product Manager portfolio of Harsh Kankaria. Ex-Zomato, IIT Delhi. Showcasing product thinking, case studies, and impact.',
+    'Product Manager portfolio of Harsh Kankaria. Ex-Zomato, IIT Delhi. Showcasing product thinking, projects, and impact.',
 };
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -68,51 +66,6 @@ const experience: {
   },
 ];
 
-const caseStudies: CaseStudyData[] = [
-  {
-    tag: 'Case Study · SaaS',
-    title: 'Reducing Billing Friction for Digital Agencies',
-    problem:
-      'Digital marketing agencies were stitching together spreadsheets, WhatsApp messages, and manual invoices to manage client billing — leading to errors, delays, and churn.',
-    approach:
-      'Ran 8 discovery interviews with agency owners to map the billing workflow. Identified the core pain: no single source of truth for hours-tracked → invoice raised. Built AccountX with a time-tracking → billing → payment flow, shipped an MVP in 6 weeks.',
-    impact: [
-      '60% reduction in time spent on billing per client',
-      '3 agencies onboarded in the first month post-launch',
-      'NPS of 72 after 90-day cohort',
-    ],
-    tags: ['Discovery', 'MVP', 'B2B SaaS', 'Retention'],
-  },
-  {
-    tag: 'Case Study · Growth',
-    title: 'Checkout Funnel Optimisation at Zomato',
-    problem:
-      'The checkout funnel showed a consistent 18% drop-off between cart review and payment confirmation on mid-tier Android devices — disproportionately affecting Tier 2 & 3 users.',
-    approach:
-      'Segmented drop-off by device, OS, and network. Identified that the address selection step caused the most friction on low-RAM devices. Worked with engineering to lazy-load the map component and simplify the address confirm CTA. Ran an A/B test across 2% traffic for 2 weeks.',
-    impact: [
-      '8% improvement in checkout conversion for the test cohort',
-      'Shipped to 100% of users in the next sprint cycle',
-      'Estimated incremental GMV impact: ₹4–6Cr/month',
-    ],
-    tags: ['A/B Testing', 'Funnel Analysis', 'Mobile', 'Growth'],
-  },
-  {
-    tag: 'Case Study · 0→1',
-    title: 'Building Whisp — AI Book-Notes App',
-    problem:
-      'Avid readers lose 80% of key ideas from books within a week. Existing apps either require too much manual effort or surface highlights without context.',
-    approach:
-      'Did a Jobs-to-be-Done analysis across 20 readers. Core job: "When I finish a chapter, help me lock in the 3 ideas I want to remember." Built an AI-powered capture flow (highlight → tag → summary) with a weekly spaced-repetition digest.',
-    impact: [
-      'Launched beta with 120 users, 42% weekly active',
-      'Average of 9 notes saved per session',
-      '4.7/5 satisfaction on the "I feel like I retained more" survey question',
-    ],
-    tags: ['0→1', 'AI Product', 'User Research', 'Consumer'],
-  },
-];
-
 const metrics: { value: string; label: string }[] = [
   { value: '5+', label: 'Years of product & analytics experience' },
   { value: '14', label: 'Products shipped end-to-end' },
@@ -128,25 +81,6 @@ const projects: CylinderProject[] = [
   { title: 'Mannat', image: '/images/mannat.png', link: '#' },
 ];
 
-const pmPrinciples: { title: string; body: string }[] = [
-  {
-    title: 'Problem before solution',
-    body: 'I spend disproportionate time in discovery. A well-framed problem is already 40% of the solution. I use Jobs-to-be-Done, user interviews, and data triangulation before writing a single spec.',
-  },
-  {
-    title: 'Outcome > output',
-    body: "Roadmaps ship features; great PMs ship outcomes. I anchor everything to a north-star metric and tie each initiative to a measurable hypothesis before it enters the sprint.",
-  },
-  {
-    title: 'Opinionated, not precious',
-    body: "I form strong views quickly from evidence, share them clearly, and update them faster when I'm wrong. Bad ideas should die in review, not in production.",
-  },
-  {
-    title: 'Ruthless prioritisation',
-    body: 'I use RICE and impact/effort frameworks, but the real skill is saying no loudly enough that the team feels the focus, not the constraint.',
-  },
-];
-
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function PortfolioPage() {
@@ -154,7 +88,22 @@ export default function PortfolioPage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white pt-24">
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="relative flex min-h-[80vh] items-end md:items-center px-6 pb-12 md:pb-10">
+      <section className="relative flex min-h-[80vh] items-end md:items-center px-6 pb-12 md:pb-10 overflow-hidden">
+
+        {/* Gradient waves: full hero background */}
+        <div className="absolute inset-0 z-0">
+          <GradientWaves
+            horizonColor="#0b1220"
+            waveColor="#2563eb"
+            crestColor="#93c5fd"
+            speed={0.35}
+            amplitude={3}
+            opacity={1}
+            brightness={1.4}
+            mouseInteraction
+          />
+        </div>
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/10 via-transparent to-black/50" />
 
         {/* Mobile: full-bleed background image */}
         <img
@@ -181,7 +130,7 @@ export default function PortfolioPage() {
                 and engineering trade-offs — and I thrive when zero becomes one.
               </Lead>
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
-                <Button href="#case-studies" size="lg" className="py-5">View Case Studies</Button>
+                <Button href="#projects" size="lg" className="py-5">View Projects</Button>
                 <Button href="#experience" variant="secondary" size="lg">My Experience</Button>
                 <Button href="mailto:harshkankaria9@gmail.com" variant="ghost" size="lg">
                   Let&apos;s Talk →
@@ -222,36 +171,16 @@ export default function PortfolioPage() {
         </Container>
       </div>
 
-      {/* ── PM Approach ──────────────────────────────────────────────── */}
-      <Section id="approach">
-        <Container size="md">
-          <SectionHeader
-            title="How I think about product"
-            subtitle="My mental models, distilled from building products across B2B SaaS, consumer apps, and high-traffic platforms."
-            className="mb-12"
-          />
-          <div className="grid gap-6 sm:grid-cols-2">
-            {pmPrinciples.map((p) => (
-              <InfoCard key={p.title} title={p.title} body={p.body} />
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* ── Case Studies ─────────────────────────────────────────────── */}
-      <Section id="case-studies" background="muted">
+      {/* ── Projects Cylinder ────────────────────────────────────────── */}
+      <Section id="projects" background="muted" padding="sm">
         <Container size="lg">
           <SectionHeader
-            title="Case Studies"
-            subtitle="Three product problems I've owned — from discovery to impact."
+            title="Projects"
+            subtitle="Products I've built from zero - each one a real problem, a shipped solution."
             centered
-            className="mb-16"
+            className="mb-4"
           />
-          <div className="flex flex-col gap-12">
-            {caseStudies.map((cs) => (
-              <CaseStudyCard key={cs.title} {...cs} />
-            ))}
-          </div>
+          <ProjectCylinder projects={projects} />
         </Container>
       </Section>
 
@@ -274,19 +203,6 @@ export default function PortfolioPage() {
               </div>
             ))}
           </div>
-        </Container>
-      </Section>
-
-      {/* ── Projects Cylinder ────────────────────────────────────────── */}
-      <Section id="projects" background="muted">
-        <Container size="lg">
-          <SectionHeader
-            title="Projects"
-            subtitle="Products I've built from zero — each one a real problem, a shipped solution."
-            centered
-            className="mb-16"
-          />
-          <ProjectCylinder projects={projects} />
         </Container>
       </Section>
 
