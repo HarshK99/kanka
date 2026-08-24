@@ -1,11 +1,22 @@
+'use client';
+
+import { useRef } from 'react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { SpecularGlow } from './specular-glow';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'ghost' | 'link';
   size?: 'sm' | 'md' | 'lg' | 'xl';
   href?: string;
 }
+
+const glowByVariant: Record<NonNullable<ButtonProps['variant']>, { lineColor: string; baseColor: string }> = {
+  primary: { lineColor: '#2563eb', baseColor: '#93c5fd' },
+  secondary: { lineColor: '#ffffff', baseColor: '#52525b' },
+  ghost: { lineColor: '#ffffff', baseColor: '#52525b' },
+  link: { lineColor: '#ffffff', baseColor: '#52525b' },
+};
 
 const getButtonClasses = (variant: ButtonProps['variant'] = 'primary', size: ButtonProps['size'] = 'md') => {
   const baseClasses = 'inline-flex items-center justify-center rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50';
@@ -29,22 +40,32 @@ const getButtonClasses = (variant: ButtonProps['variant'] = 'primary', size: But
 
 export const Button = ({ className, variant = 'primary', size = 'md', href, ...props }: ButtonProps) => {
   const buttonClasses = getButtonClasses(variant, size);
+  const targetRef = useRef<HTMLAnchorElement & HTMLButtonElement>(null);
+  const glow = glowByVariant[variant];
 
   if (href) {
     return (
-      <Link
-        href={href}
-        className={cn(buttonClasses, className)}
-      >
-        {props.children}
-      </Link>
+      <span className="relative inline-flex">
+        <SpecularGlow targetRef={targetRef} {...glow} />
+        <Link
+          ref={targetRef}
+          href={href}
+          className={cn(buttonClasses, 'relative', className)}
+        >
+          {props.children}
+        </Link>
+      </span>
     );
   }
 
   return (
-    <button
-      className={cn(buttonClasses, className)}
-      {...props}
-    />
+    <span className="relative inline-flex">
+      <SpecularGlow targetRef={targetRef} {...glow} />
+      <button
+        ref={targetRef}
+        className={cn(buttonClasses, 'relative', className)}
+        {...props}
+      />
+    </span>
   );
 };

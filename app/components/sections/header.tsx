@@ -16,7 +16,8 @@ const NAV_ITEMS = [
 const SCROLL_OFFSET = 10;
 
 export const Header = () => {
-  const pathname = usePathname();
+  const rawPathname = usePathname();
+  const pathname = rawPathname.length > 1 ? rawPathname.replace(/\/$/, '') : rawPathname;
   const [activeHash, setActiveHash] = useState<string | null>(null);
 
   // Smooth scroll on home page when hash changes
